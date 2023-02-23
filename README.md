@@ -9,3 +9,4 @@ sending emails when stock is low
 trigger runs program once a week
 if items are below a threshold unique to each item (info can be found in sheet 2)
 sends email for each item to order more and includes how much of each item we have
+TO FIX: if multiple items need to be restocked, sends multiple emails; want to condense information into one email with all items needing to be bought

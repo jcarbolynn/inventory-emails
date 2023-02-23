@@ -1,0 +1,224 @@
+var SpreadSheetID = "1ZfSkVgSC8NrhLRy-F24JHcnvCvLn3YRlocpqI8KQNpI"
+var SheetName = "Media/Serum Summary"
+var EmailSheet = "emails"
+
+// https://blog.devgenius.io/send-mass-emails-using-google-apps-script-from-a-google-spreadsheet-fc2f79c9febd
+function getData(email_sheet){
+   var jo = {};
+   var dataArray = [];
+// collecting data from 2nd Row , 1st column to last row and last    // column sheet.getLastRow()-1
+var rows = email_sheet.getRange(2,1,email_sheet.getLastRow()-1, email_sheet.getLastColumn()).getValues();
+for(var i = 0, l= rows.length; i<l ; i++){
+     var dataRow = rows[i];
+     var record = {};
+      record['email'] = dataRow[0];
+      dataArray.push(record);
+   }
+   jo = dataArray;
+   var result = JSON.stringify(jo);
+return jo;
+}
+
+function sendMail(e){
+
+  // inventory
+  var ss = SpreadsheetApp.openById(SpreadSheetID);
+  var sheet = ss.getSheetByName(SheetName);
+
+  //email stuff
+  var emailInfo = ss.getSheetByName(EmailSheet);
+  var email_json = getData(emailInfo);
+
+  // (row, col)
+  if (sheet.getRange(2,3).getValue() <= sheet.getRange(2,4).getValue()){
+    var hihs = sheet.getRange(2,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "HIHS", htmlBody: hihs + " bottles of HIHS left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(3,3).getValue() <= sheet.getRange(3,4).getValue()){
+    var f12k = sheet.getRange(3,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "F-12K", htmlBody: f12k + " bottles of F-12K left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(4,3).getValue() <= sheet.getRange(4,4).getValue()){
+    var rpmi = sheet.getRange(4,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "RPMI", htmlBody: rpmi + " bottles of RPMI left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(5,3).getValue() <= sheet.getRange(5,4).getValue()){
+    var fbs = sheet.getRange(5,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "FBS", htmlBody: fbs + " bottles of FBS left", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(6,3).getValue() <= sheet.getRange(6,4).getValue()){
+    var bcs = sheet.getRange(6,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "BCS", htmlBody: bcs + " bottles of BCS left", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(7,3).getValue() <= sheet.getRange(7,4).getValue()){
+    var dmem = sheet.getRange(7,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "DMEM", htmlBody: dmem + " bottles of DMEM left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(8,3).getValue() <= sheet.getRange(8,4).getValue()){
+    var acc = sheet.getRange(8,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "Accutase", htmlBody: acc + " bottles of Accutase left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(9,3).getValue() <= sheet.getRange(9,4).getValue()){
+    var hep = sheet.getRange(9,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "HEPES", htmlBody: hep + " bottles of HEPES left.", noReply:true})
+    }
+  }
+  
+  if (sheet.getRange(10,3).getValue() <= sheet.getRange(10,4).getValue()){
+    var tryp = sheet.getRange(10,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "Trypsin", htmlBody: tryp + " bottles of Trypsin left." , noReply:true})
+    }
+  }
+
+  if (sheet.getRange(11,3).getValue() <= sheet.getRange(11,4).getValue()){
+    var glut = sheet.getRange(11,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "L-Glutamine", htmlBody: glut + " bottles of L-Glutamine left.", noReply:true})
+    }
+  }
+
+  if (sheet.getRange(12,3).getValue() <= sheet.getRange(12,4).getValue()){
+    var penstrep = sheet.getRange(12,3).getValue();
+    for (var j=0; j<email_json.length; j++){
+      MailApp.sendEmail({to: email_json[j].email, subject: "Pen Strep", htmlBody: penstrep + " bottles of Pen Strep left.", noReply:true})
+    }
+  }
+
+
+
+  // Logger.log(columnToCheck)
+
+
+
+  // let item = data[0,2]
+  // let email = "jocarbonell@enthalpy.com";
+  // let msg = "Hello, " + item + " is currently at: " + accutase + "."
+
+
+  // MailApp.sendEmail(email, item, msg)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// THIS ACTUALLY WORKS
+// function sendEmail(){
+//   // Logger.log(101);
+
+//   var emailAddress = "jocarbonell@enthalpy.com";
+//   var subject = "HELLO";
+//   var message = "SENT AN EMAIL";
+
+//   MailApp.sendEmail(emailAddress, subject, message);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function sendEmail() {
+
+//   var ss = SpreadsheetApp.getActiveSpreadsheet()
+//   var sheet1=ss.getSheetByName('CellCultureInventories');
+//   var emailAddress = "jocarbonell@enthalpy.com";
+//   var subject = sheet1.getRange(41,1).getValue();
+//   var message = sheet1.getRange(41,3).getValue();
+
+//   MailApp.sendEmail(emailAddress, subject, message);
+
+// }
+
+// const mediaID = 0
+// const range = 'C23:C27'
+
+// function sendEmail(){
+//   var ss = Sheets.Spreadsheets.Values.get(mediaID, range).values;
+//   console.log(values[row][2])
+//   // var sheet1=ss.getSheetByName('CellCultureInventories');
+
+//   // var emailAddress = "jocarbonell@enthalpy.com";
+//   // var subject = "HELLO";
+//   // var message = "SENT AN EMAIL";
+
+//   // MailApp.sendEmail(emailAddress, subject, message);
+// }
+
+// function sendEmail(e) {  
+//   MailApp.sendEmail({
+//     to: "jocarbonell@enthalpy.com",
+//     subject: "test",
+//     body: "I sent an email through google apps."
+//   });
+// }
+
+
+
+// function sendEmail() {
+//   // var ss = SpreadsheetApp.getActive();
+//   // var sheet = ss.getSheetByName("Cell Culture Inventories");
+
+//   // var accutase = sheet.getRange("L24").getValue();
+//   var accutase = 1000
+
+//   MailApp.sendEmail("jocarbonell@enthalpy.com", "Accutase", "Accutase is currently at: " + accutase + ".")
+
+//   // if(accutase < 5){
+//   // //   MailApp.sendEmail("espress@montrose-env.com", "Accutase", "Accutase is currently at: " + accutase + ".")
+//   // }
+// }

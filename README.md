@@ -15,3 +15,5 @@ ALSO:
 added ** to formulas in google sheets so they only need to CONTAIN the phrase (extra leading/trailing spaces no longer an sisue)
 STILL have to have exact phrase entered for each item in inventory lists for summary to work
 =SUMIF('Flow Inventory'!A:A, "*Nucleic Acid Dye A*", 'Flow Inventory'!G:G)
+(for vials of cells also includes check for enthalpy lot # == NA bc only want to count cells directly from supplier)
+=SUMIFS('LNT-02 Inventory'!G:G,'LNT-02 Inventory'!F:F,"*NA*",'LNT-02 Inventory'!A:A,"*A549*")

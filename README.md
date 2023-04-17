@@ -10,3 +10,8 @@ trigger runs program once a week
 if items are below a threshold unique to each item (info can be found in sheet 2)
 sends email for each item to order more and includes how much of each item we have
 TO FIX: if multiple items need to be restocked, sends multiple emails; want to condense information into one email with all items needing to be bought
+
+ALSO:
+added ** to formulas in google sheets so they only need to CONTAIN the phrase (extra leading/trailing spaces no longer an sisue)
+STILL have to have exact phrase entered for each item in inventory lists for summary to work
+=SUMIF('Flow Inventory'!A:A, "*Nucleic Acid Dye A*", 'Flow Inventory'!G:G)
